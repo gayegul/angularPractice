@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Angular Demo</title>
+  <script src="./lib/angular.min.js"></script>
+  <script src="./js/controllers.js">  </script>
+  <style src="./css/style.css"></style>
+</head>
+<body ng-style="{'background':'#C1B7BC'}">
+    <div class="main" ng-controller="MyController" ng-style="{'background': '#988E94', 'width': '400px', 'margin':'auto'}">
+        <div class="search">
+            <h1>Artist Directory</h1>
+            <label>search:</label>
+              <input ng-model="query" placeholder="Search for artists" autofocus>
+              <label class="formgroup">by:
+                  <select ng-model="artistOrder">
+                    <option value="name">Name</option>
+                    <option value="title">Title</option>
+                  </select>
+              </label>
+        </div>
+        <ul class="artistlist">
+            <li class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder">
+                <img ng-src="./img/{{item.shortname}}.jpeg" alt="photo of {{item.name}}">
+                <h2>{{item.name | uppercase}}</h2>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
